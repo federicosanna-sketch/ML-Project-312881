@@ -108,3 +108,6 @@ Figure description:
 Missingness matrix after preprocessing.
 
 The post-imputation missingness matrix shows that all missing values have been successfully addressed. The dataset is now complete and suitable for machine learning models that do not natively handle missing data.
+
+### 2.2 Exploratory Data Analysis (EDA)
+

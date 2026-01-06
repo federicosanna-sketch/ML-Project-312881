@@ -221,10 +221,10 @@ The results show that DBSCAN identifies a core dense region while labeling a sig
 
 ⸻
 
-#### Experiment 4: DBSCAN Hyperparameter Intuition via k-Distance Plot
+#### DBSCAN Hyperparameter Intuition via k-Distance Plot
 
 - Main purpose:
-This experiment supports the DBSCAN setup by providing intuition for the selection of the eps parameter.
+This part supports the DBSCAN setup by providing intuition for the selection of the eps parameter.
 
 - Baseline(s):
 No alternative method is used; this analysis serves as a diagnostic tool for DBSCAN configuration.
@@ -242,7 +242,7 @@ The sharp change in slope indicates a natural threshold separating dense regions
 
 ⸻
 
-#### Experiment 5: Cluster Validation on Held-Out Test Data
+#### Experiment 4: Cluster Validation on Held-Out Test Data
 
 - Main purpose:
 The goal of this experiment is to assess whether the learned clusters generalize to unseen data and maintain interpretability.

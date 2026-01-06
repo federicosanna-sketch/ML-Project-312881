@@ -9,26 +9,19 @@ Machine Learning Project 2025/2026 - Court Dynamics
 
 - Filippo Parissi: 309151
 
+<img width="400" height="500" alt="image" src="https://github.com/user-attachments/assets/e4fc6db9-5d52-46c1-b516-9588131ef3ff" />
+
 ## Section 1: Introduction
 
 This project explores the design and implementation of a machine learning–based system aimed at addressing a specific real-world or analytical problem through data-driven methods. The primary objective of the project is to develop, evaluate, and analyze a model (or set of models) that can effectively learn patterns from data and produce meaningful insights.
 
-Our work focuses on investigating how different design choices—such as feature representation, model architecture, and training strategies—impact overall system performance. By structuring the project as an end-to-end pipeline, we aim to provide a clear and reproducible workflow that spans data preprocessing, model training, evaluation, and result interpretation. Ultimately, this project serves both as a practical application of machine learning concepts and as an experimental framework for understanding the strengths and limitations of the proposed approach.
+Our work focuses on investigating how different design choices (such as feature representation, model architecture, and training strategies) impact overall system performance. By structuring the project as an end-to-end pipeline, we aim to provide a clear and reproducible workflow that spans data preprocessing, model training, evaluation, and result interpretation. Ultimately, this project serves both as a practical application of machine learning concepts and as an experimental framework for understanding the strengths and limitations of the proposed approach.
 
 ## Section 2: Methods
 
 ### 2.1 Data Preprocessing
 
 Data preprocessing represents a critical step in the proposed pipeline, as the raw dataset contains missing values, heterogeneous data types, skewed distributions, and features with very different numerical scales. The goal of this step is to clean, standardize, and transform the data in order to make it suitable for downstream modeling while preserving as much information as possible.
-
-The preprocessing pipeline includes:
-1) analysis of missing values
-2) imputation of numerical features
-3) inspection of feature distributions before and after imputation
-4) verification of missingness removal
-5) analysis of data types
-6) outlier and scale inspection
-7) feature scaling.
 
 #### Data Type Inspection
 
@@ -148,7 +141,7 @@ Scatter plot of points scored versus minutes played.
 
 Finally, we explicitly analyze the relationship between playing time and scoring output. The scatter plot shows a clear positive relationship, but also highlights substantial variability among players with similar minutes played. This indicates that while playing time is a necessary condition for scoring, it is not sufficient to fully explain scoring performance. This observation motivates the inclusion of additional contextual and skill-related features in the predictive models.
 
-### Section 3 – Experimental Design
+## Section 3 – Experimental Design
 
 This section describes the experimental setup used to validate the target contributions of the project. The experiments focus on identifying meaningful player groupings using unsupervised learning techniques and evaluating their interpretability and stability under different clustering approaches.
 
@@ -261,3 +254,49 @@ Figure description:
 Final K-Means clusters on the test set: Minutes vs Points.
 
 The test-set visualization confirms that clusters remain well-structured and interpretable, indicating that the clustering solution generalizes beyond the training data.
+
+#### Evaluation Metrics
+
+Adjusted Rand Index (ARI) and Silhouette Score are metrics we used to evaluate clustering in our project.
+
+- Adjusted Rand Index (ARI) was used to measure how well the clustering results match known or ground-truth labels. It corrects for random chance, making it more reliable than the plain Rand Index. Higher values indicate better agreement.
+- Silhouette Score was used to assess cluster quality without relying on any labels. It measures how well data points are grouped within their own cluster versus how far they are from other clusters. higher scores mean better-defined and more separated clusters. 
+
+Using both metrics provides a more complete evaluation: ARI validates clustering accuracy when labels exist, while the Silhouette Score evaluates the natural structure and separation of the clusters based solely on the data. 
+
+## Section 4 – Results
+
+This section presents the main findings of the project, focusing on model comparison, cluster interpretability, and the temporal stability of player roles. All results are obtained directly from the implemented code and are used to support conclusions about the suitability of different clustering approaches for player performance analysis.
+
+⸻
+
+#### Model Comparison: Performance vs Stability
+
+<img width="778" height="576" alt="20" src="https://github.com/user-attachments/assets/631ab77d-54ac-4c68-a7b6-09ed0263b6d0" />
+
+Figure description:
+Comparison of clustering models in terms of validation silhouette score and clustering stability (ARI mean).
+
+The comparison between K-Means, DBSCAN, and Agglomerative clustering reveals a clear trade-off between cluster separation and stability. Agglomerative clustering achieves the highest silhouette score while also exhibiting superior stability across different data splits. In contrast, K-Means shows lower stability, and DBSCAN, while capable of identifying outliers, demonstrates limited robustness. These results support the selection of Agglomerative clustering as the final model.
+
+⸻
+
+#### Cluster Archetypes in the Final Model
+
+<img width="937" height="476" alt="21" src="https://github.com/user-attachments/assets/14eff9eb-7cef-4f7d-8ddc-f908ab763d91" />
+
+Figure description:
+Standardized cluster archetypes for the final Agglomerative clustering model.
+
+The heatmap illustrates the standardized mean feature values for each cluster, enabling a direct interpretation of cluster archetypes. The clusters correspond to distinct player roles, such as low-usage players, balanced contributors, and high-impact players. Clear differences across performance metrics confirm that the clustering solution captures meaningful and interpretable structure in the data.
+
+⸻
+
+#### Role Transition Dynamics Over Time
+
+<img width="666" height="576" alt="22" src="https://github.com/user-attachments/assets/3a22881a-ce42-4ff6-b959-d4dc82e86d5f" />
+
+Figure description:
+Role transition matrix normalized by current cluster.
+
+The role transition matrix shows how players move between clusters over time. The strong diagonal structure indicates high temporal consistency, suggesting that player roles are relatively stable across seasons. Off-diagonal probabilities highlight limited but meaningful transitions, reflecting player development, role changes, or contextual factors such as team dynamics.

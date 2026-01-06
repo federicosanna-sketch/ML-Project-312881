@@ -147,3 +147,117 @@ Figure description:
 Scatter plot of points scored versus minutes played.
 
 Finally, we explicitly analyze the relationship between playing time and scoring output. The scatter plot shows a clear positive relationship, but also highlights substantial variability among players with similar minutes played. This indicates that while playing time is a necessary condition for scoring, it is not sufficient to fully explain scoring performance. This observation motivates the inclusion of additional contextual and skill-related features in the predictive models.
+
+### Section 3 – Experimental Design
+
+This section describes the experimental setup used to validate the target contributions of the project. The experiments focus on identifying meaningful player groupings using unsupervised learning techniques and evaluating their interpretability and stability under different clustering approaches.
+
+⸻
+
+#### Experiment 1: K-Means Clustering on Player Performance Profiles
+
+- Main purpose:
+The goal of this experiment is to identify distinct player archetypes based on standardized performance metrics, using K-Means clustering as a baseline unsupervised method.
+
+- Baseline(s):
+K-Means is used as the primary baseline due to its simplicity, scalability, and widespread use in clustering continuous numerical data.
+
+- Evaluation metrics:
+Evaluation is qualitative and structural, based on:
+  - Cluster separation in reduced-dimensional space (PCA projection)
+  - Cohesion around centroids
+  - Interpretability of resulting clusters in terms of basketball performance
+
+<img width="1176" height="676" alt="15" src="https://github.com/user-attachments/assets/c99b868b-4e0b-4480-81aa-0a41dcac1f63" />
+
+Figure description:
+K-Means clustering visualized in PCA space with cluster centroids.
+
+The PCA projection allows visualization of high-dimensional player data in two dimensions. The presence of relatively compact and well-separated clusters suggests that K-Means captures meaningful structure in the data, with centroids representing distinct player profiles.
+
+⸻
+
+#### Experiment 2: Hierarchical Clustering as a Structural Baseline
+
+- Main purpose:
+This experiment explores hierarchical relationships between players to assess whether natural multi-level groupings exist in the data.
+
+- Baseline(s):
+Agglomerative hierarchical clustering with Ward linkage is used as a structural baseline, offering a different perspective compared to partition-based methods.
+
+- Evaluation metrics:
+  - Dendrogram structure and merge distances
+  - Visual identification of meaningful cluster splits
+  - Comparison with flat clustering results
+
+<img width="1176" height="576" alt="16" src="https://github.com/user-attachments/assets/ee2a7ac9-5c9c-44d4-868d-3e7d2677b291" />
+
+Figure description:
+Agglomerative clustering dendrogram (Ward linkage, subsampled data).
+
+The dendrogram reveals a hierarchical organization of player profiles, highlighting how clusters progressively merge. This provides insight into cluster granularity and supports the choice of a fixed number of clusters for K-Means.
+
+⸻
+
+#### Experiment 3: Density-Based Clustering with DBSCAN
+
+- Main purpose:
+The objective of this experiment is to identify dense regions of similar player profiles while explicitly detecting outliers and atypical players.
+
+- Baseline(s):
+DBSCAN is compared against K-Means to evaluate the impact of density-based assumptions and noise handling.
+
+- Evaluation metrics:
+  - Ability to identify noise points
+  - Shape flexibility of detected clusters
+  - Qualitative comparison with centroid-based clustering
+
+<img width="1176" height="676" alt="17" src="https://github.com/user-attachments/assets/648346c5-5dc9-4fde-b960-c54a0e664efe" />
+
+Figure description:
+DBSCAN clustering results visualized in PCA space, including noise points.
+
+The results show that DBSCAN identifies a core dense region while labeling a significant portion of players as noise. This highlights the heterogeneity of player profiles and the limitations of density-based methods in highly skewed, continuous performance data.
+
+⸻
+
+#### Experiment 4: DBSCAN Hyperparameter Intuition via k-Distance Plot
+
+- Main purpose:
+This experiment supports the DBSCAN setup by providing intuition for the selection of the eps parameter.
+
+- Baseline(s):
+No alternative method is used; this analysis serves as a diagnostic tool for DBSCAN configuration.
+
+- Evaluation metrics:
+  - Visual identification of the “knee” point in the k-distance curve
+  - Stability of clustering results around selected eps
+
+<img width="976" height="376" alt="18" src="https://github.com/user-attachments/assets/d3792f02-7e83-463f-bd08-0033668143e4" />
+
+Figure description:
+k-distance plot (k = 5) used to estimate the DBSCAN epsilon parameter.
+
+The sharp change in slope indicates a natural threshold separating dense regions from sparse areas. This visualization guides the selection of a reasonable eps value for DBSCAN.
+
+⸻
+
+#### Experiment 5: Cluster Validation on Held-Out Test Data
+
+- Main purpose:
+The goal of this experiment is to assess whether the learned clusters generalize to unseen data and maintain interpretability.
+
+- Baseline(s):
+K-Means clustering learned on the training set is applied to the test set without re-fitting.
+
+- Evaluation metrics:
+  - Consistency of cluster structure
+  - Visual coherence in feature space
+  - Stability of cluster assignments
+
+<img width="976" height="576" alt="19" src="https://github.com/user-attachments/assets/c6631791-8827-442d-9691-f06873ff5c47" />
+
+Figure description:
+Final K-Means clusters on the test set: Minutes vs Points.
+
+The test-set visualization confirms that clusters remain well-structured and interpretable, indicating that the clustering solution generalizes beyond the training data.

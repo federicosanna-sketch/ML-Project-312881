@@ -9,7 +9,14 @@ Machine Learning Project 2025/2026 - Court Dynamics
 
 - Filippo Parissi: 309151
 
-<img width="400" height="500" alt="image" src="https://github.com/user-attachments/assets/e4fc6db9-5d52-46c1-b516-9588131ef3ff" />
+
+Machine Learning Porcoddio Pipeline
+	1.	Raw Dataset
+	2.	Data Preprocessing
+	3.	Exploratory Data Analysis (EDA)
+	4.	Feature Transformation
+	5.	Clustering Models
+	6.	Model Evaluation
 
 ## Section 1: Introduction
 
@@ -300,3 +307,18 @@ Figure description:
 Role transition matrix normalized by current cluster.
 
 The role transition matrix shows how players move between clusters over time. The strong diagonal structure indicates high temporal consistency, suggesting that player roles are relatively stable across seasons. Off-diagonal probabilities highlight limited but meaningful transitions, reflecting player development, role changes, or contextual factors such as team dynamics.
+
+## Section 5: Conclusions
+
+The clustering results highlight meaningful differences in how K-Means, Agglomerative Clustering, and DBSCAN partition the data, underscoring the importance of selecting a method aligned with the underlying data structure.
+
+- K-Means produced clearly defined clusters with strong separation according to centroid-based distance measures, performing well when clusters were relatively compact and spherical. Its evaluation metrics indicated stable performance across different initializations, making it a reliable baseline for comparison.
+
+- Agglomerative Clustering offered additional insight by capturing hierarchical relationships among observations. The resulting dendrogram and cluster assignments revealed nested structures that K-Means could not fully represent, particularly in cases where clusters varied in size or were not strictly spherical. While its overall clustering quality was comparable to K-Means, its strength lay in interpretability and flexibility, allowing cluster structure to be examined at multiple levels of granularity.
+
+- In contrast, DBSCAN demonstrated a different clustering behavior by identifying dense regions in the data while explicitly labeling noise and outliers. Its outputs showed that DBSCAN was effective at isolating irregularly shaped clusters and filtering sparse observations that centroid-based methods forced into clusters. However, its sensitivity to parameter selection led to less stable results across different configurations, and in some cases fewer meaningful clusters were identified compared to the other methods.
+
+Overall, the model outputs suggest that K-Means is well-suited for identifying dominant, well-separated groupings, Agglomerative Clustering provides valuable hierarchical context and interpretability, and DBSCAN excels at outlier detection and density-based structure discovery. The comparative evaluation supports the final methodological choice by demonstrating how each algorithm contributes distinct analytical strengths, with the selected approach best balancing cluster quality, stability, and interpretability for the given problem.
+
+Despite these promising results, several questions remain open. For example, the generalizability of the model to unseen data distributions or larger-scale datasets was not fully explored, and computational efficiency was not a primary focus of this work. Future directions could include experimenting with more advanced models, performing extensive hyperparameter optimization, incorporating additional data sources or features, and evaluating robustness under different noise or domain-shift conditions. These extensions would help further strengthen the conclusions and broaden the applicability of the proposed system.
+

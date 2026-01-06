@@ -10,7 +10,7 @@ Machine Learning Project 2025/2026 - Court Dynamics
 - Filippo Parissi: 309151
 
 
-Machine Learning Porcoddio Pipeline
+## Project Pipeline 
 	1.	Raw Dataset
 	2.	Data Preprocessing
 	3.	Exploratory Data Analysis (EDA)
@@ -137,17 +137,6 @@ Correlation matrix of key performance metrics.
 
 Next, we explore linear relationships between numerical features using a correlation matrix. Strong positive correlations are observed between minutes played and most performance metrics, particularly points and rebounds, indicating that playing time is a major driver of raw statistical output. In contrast, some metrics (e.g., assists and blocks) exhibit weaker or more nuanced relationships, suggesting that they capture distinct aspects of player behavior. This analysis helps identify potential multicollinearity issues and informs feature selection.
 
-⸻
-
-#### Relationship Between Playing Time and Scoring Output
-
-<img width="976" height="476" alt="14" src="https://github.com/user-attachments/assets/d178b2a6-9dae-4893-8a11-fbad626cbee8" />
-
-Figure description:
-Scatter plot of points scored versus minutes played.
-
-Finally, we explicitly analyze the relationship between playing time and scoring output. The scatter plot shows a clear positive relationship, but also highlights substantial variability among players with similar minutes played. This indicates that while playing time is a necessary condition for scoring, it is not sufficient to fully explain scoring performance. This observation motivates the inclusion of additional contextual and skill-related features in the predictive models.
-
 ## Section 3 – Experimental Design
 
 This section describes the experimental setup used to validate the target contributions of the project. The experiments focus on identifying meaningful player groupings using unsupervised learning techniques and evaluating their interpretability and stability under different clustering approaches.
@@ -230,7 +219,7 @@ This part supports the DBSCAN setup by providing intuition for the selection of 
 No alternative method is used; this analysis serves as a diagnostic tool for DBSCAN configuration.
 
 - Evaluation metrics:
-  - Visual identification of the “knee” point in the k-distance curve
+  - Visual identification of the elbow point in the k-distance curve
   - Stability of clustering results around selected eps
 
 <img width="976" height="376" alt="18" src="https://github.com/user-attachments/assets/d3792f02-7e83-463f-bd08-0033668143e4" />
